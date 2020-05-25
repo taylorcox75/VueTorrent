@@ -344,7 +344,8 @@ export default {
             return this.getTheme() ? 'Dark' : 'Light'
         },
         altSpeed() {
-            return this.getStatus().altSpeed
+            const status = this.getStatus()
+            return status.altSpeed
         },
         series() {
             return [

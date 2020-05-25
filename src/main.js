@@ -4,16 +4,13 @@ import '@/registerServiceWorker'
 import router from '@/router'
 import store from '@/store'
 import '@babel/polyfill'
+import vuetify from '@/plugins/vuetify'
 // eslint-disable-next-line no-unused-vars
 import filters from '@/filters'
 
-import VueObserveVisibility from 'vue-observe-visibility'
-
-Vue.use(VueObserveVisibility)
-
 import Toast from 'vue-toastification'
 import 'vue-toastification/dist/index.css'
-import vuetify from './plugins/vuetify'
+
 Vue.use(Toast, {
     maxToasts: 5,
     timeout: 2000

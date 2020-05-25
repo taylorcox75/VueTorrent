@@ -89,10 +89,14 @@ export default new Vuex.Store({
             state.status = new Status(res.data.server_state)
 
             // graph
-            state.download_data.splice(0, 1)
-            state.download_data.push(state.status.dlspeedRaw)
-            state.upload_data.splice(0, 1)
-            state.upload_data.push(state.status.upspeedRaw)
+            if (!isNaN(state.status.dlspeedRaw)) {
+                state.download_data.splice(0, 1)
+                state.download_data.push(state.status.dlspeedRaw)
+            }
+            if (!isNaN(state.status.upspeedRaw)) {
+                state.upload_data.splice(0, 1)
+                state.upload_data.push(state.status.upspeedRaw)
+            }
 
             const { data } = await qbit.getTorrents(state.sort_options)
             // torrents
@@ -128,6 +132,10 @@ export default new Vuex.Store({
                 context.commit('updateMainData')
                 context.commit('SET_SETTINGS')
                 return true
+            }
+            if (res.includes('IP')) {
+                Vue.$toast.error('Too many failed attemps 😕')
+                return false
             }
             Vue.$toast.error('Log in failed 😕')
             return false

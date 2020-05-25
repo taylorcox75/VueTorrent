@@ -21,6 +21,7 @@
                     <v-tab href="#trackers">Trackers</v-tab>
                     <v-tab href="#peers">Peers</v-tab>
                     <v-tab href="#content">Content</v-tab>
+                    <v-tab href="#exclude">Exclude</v-tab>
                 </v-tabs>
                 <v-tabs-items v-model="tab" touchless>
                     <v-tab-item value="info">
@@ -38,6 +39,9 @@
                     <v-tab-item value="content">
                         <Content :is-active="tab === 'content'" :hash="hash" />
                     </v-tab-item>
+                    <v-tab-item value="exclude">
+                        <Exclude :is-active="tab === 'exclude'" :hash="hash" />
+                    </v-tab-item>
                 </v-tabs-items>
             </div>
             <v-fab-transition v-if="phoneLayout">
@@ -50,7 +54,6 @@
 </template>
 
 <script>
-/* eslint-disable vue/no-unused-components */
 import Modal from '@/mixins/Modal'
 import { mapGetters } from 'vuex'
 
@@ -58,11 +61,12 @@ import Content from '@/components/TorrentDetailModal/Content'
 import Info from '@/components/TorrentDetailModal/Info'
 import Peers from '@/components/TorrentDetailModal/Peers'
 import Trackers from '@/components/TorrentDetailModal/Trackers'
+import Exclude from '@/components/TorrentDetailModal/Exclude'
 
 export default {
     name: 'TorrentDetailModal',
     mixins: [Modal],
-    components: { Content, Info, Peers, Trackers },
+    components: { Content, Info, Peers, Trackers, Exclude },
     data() {
         return {
             tab: null,
