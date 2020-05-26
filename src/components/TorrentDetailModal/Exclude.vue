@@ -17,7 +17,12 @@
             text
             style="position: absolute; bottom: 14px; left: 40%; right: 50%;"
         >
-            <v-btn @click="exclude" text class="blue_accent white--text mx-0 mt-3">Exclude</v-btn>
+            <v-btn
+                @click="exclude"
+                text
+                class="blue_accent white--text mx-0 mt-3"
+                >Exclude</v-btn
+            >
         </v-card-actions>
     </v-card>
 </template>
@@ -60,6 +65,8 @@ function treeifySelect(paths) {
         }
         return createFile(el)
     }
+    
+    console.log(result)
 
     return result
 }
@@ -78,7 +85,7 @@ function getIconForFileType(type) {
 
 function createFile(el) {
     return {
-        id: el.item.name + el.item.size,
+        id: el.name,
         item: el,
         label: `${getIconForFileType(el.name.split('.').pop())} ${
             el.name
@@ -88,7 +95,7 @@ function createFile(el) {
 
 function createFolder(el) {
     return {
-        id: el.item.name + el.children.length,
+        id: el.name,
         children: el.children,
         label: `📁 ${el.name}`,
         item: el
