@@ -35,7 +35,7 @@ export default new Vuex.Store({
         modals: [],
         settings: {},
         webuiSettings: {
-            darkTheme: false,
+            darkTheme: true,
             showFreeSpace: true
         },
         categories: []
